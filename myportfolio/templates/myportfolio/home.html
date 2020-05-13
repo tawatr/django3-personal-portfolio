@@ -1,0 +1,38 @@
+
+{% extends 'myportfolio/base.html' %}
+{% block content %}
+
+    <h1> TR's port </h1>
+
+    {% load static %}
+
+
+    <br>
+    <img src="{% static 'myportfolio/tawatissmiling.jpg' %}" height=400>
+    <br>
+
+    <a href="{% url 'myblog:all_blogs' %}">Blog</a>
+    <br>
+
+    <a href="{% static 'myportfolio/vitae_tawat.pdf' %}">Resume</a>
+    <br>
+
+    {% for proj1 in proj %}
+
+    {{ proj1.title }}
+    <br>
+    {{ proj1.description }}
+    <br>
+    <img src="{{ proj1.image.url }}", height=200 >
+
+    {% if proj1.url %}
+    <br>
+    <a href="{{proj1.url}}">Link</a>
+    {% endif %}
+
+    {% endfor %}
+
+    {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->

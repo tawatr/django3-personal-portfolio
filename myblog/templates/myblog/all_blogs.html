@@ -1,0 +1,29 @@
+{% extends 'myportfolio/base.html' %}
+{% block content %}
+
+<h1> Here is Tawat's blog </h1>
+
+<h2> TR has written {{blogs.count}} blog{{blogs.count|pluralize}}.</h2>
+
+{% for blog in blogs %}
+<br>
+
+<a href="{% url 'myblog:detail' blog.id %}"> <h2>{{ blog.title }}</h2> </a>
+<br>
+{{ blog.date|date:'M d, Y' }}
+<br>
+<!-- {{ blog.summary|truncatechars:100 }} -->
+<!-- In case want to truncate character -->
+{{ blog.summary|truncatechars:100 }}
+<br>
+<img src="{{ blog.image.url }}", height=200 >
+<br>
+
+{% if blog.url %}
+<br>
+<a href="{{blog.url}}">Link</a>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}
